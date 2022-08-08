@@ -39,7 +39,7 @@ jobs:
         run: pip install Flask
         
       - name: Check Flask version
-        run: sudo flask --version
+        run: flask --version
         
       #- name: Install additional tools for Virt environment
         #run: sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
