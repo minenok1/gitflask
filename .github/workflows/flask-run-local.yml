@@ -13,6 +13,8 @@ on:
 jobs:
   test_part:
     runs-on: ubuntu-latest
+    env:
+        RUN_SCRIPT: "bash run.sh"
 
     steps:
       - name: Package name + Version
@@ -22,10 +24,13 @@ jobs:
         
       - name: Initial directory
         run: 
-            echo "Hello, the initial directory is" && pwd
+            echo "The initial directory is" && pwd
             
       - name: Check python3
         run: python3 -V
+        
+      - name: Check AWS
+        run: aws --version
         
       - name: Check pip version
         run: pip -V
@@ -44,13 +49,13 @@ jobs:
         
       - name: CD to py directory + SOURCE activate
         run: 
-            cd ./py_env/ && pwd && ls -lah && cd ./my_env/ && pwd && ls -lah && cd ./bin/ && pwd && ls -lah && source activate
+            cd ./py_env/ && pwd && ls -lah && cd ./my_env/ && pwd && ls -lah && cd ./bin/ && pwd && ls -lah && source activate && export FLASK_APP=app
               
-      - name: Export flask APP
-        run: export FLASK_APP=app
+      #- name: Export flask APP
+        #run: export FLASK_APP=app
         
-     # - name: Run Flask
-        #run: nohup flask run 2>&1 &
+      - name: Run Script
+        run: ${{ env.RUN_SCRIPT }}
              
       #- name: Check if Flask runs
         #run: netstat -tulnp | grep :5000
