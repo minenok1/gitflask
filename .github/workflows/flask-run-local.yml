@@ -36,7 +36,7 @@ jobs:
         run: pip -V
         
       - name: Install flask
-        run: pip install Flask -y
+        run: pip install Flask
         
       - name: Check Flask version
         run: sudo flask --version
