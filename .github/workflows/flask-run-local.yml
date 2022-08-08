@@ -1,0 +1,65 @@
+
+name: GithubActions-Flask
+env:
+   PACKAGE_NAME: "Flask-web-server"
+   PACKAGE_VERSION: "${{ github.sha }}"
+
+on:
+ push:
+    branches:
+       - main
+
+
+jobs:
+  test_part:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Package name + Version
+        run:
+            echo "PackNAME:${{ env.PACKAGE_NAME }}" &&
+            echo "PackVER:${{ env.PACKAGE_VERSION }}"
+        
+      - name: Initial directory
+        run: 
+            echo "Hello, the initial directory is" && pwd
+            
+      - name: Check python3
+        run: python3 -V
+        
+      - name: Check pip version
+        run: pip -V
+        
+      #- name: Install additional tools for Virt environment
+        #run: sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
+             
+      #- name: Install virtual environment for flask
+        #run: sudo apt install -y python3-venv
+        
+      - name: Clone repo to the container (OS)
+        uses: actions/checkout@v1
+      
+      - name: Determine location of repo and list directory
+        run: pwd && ls -lah
+        
+      - name: CD to py directory + SOURCE activate
+        run: 
+            cd ./py_env/ && pwd && ls -lah && cd ./my_env/ && pwd && ls -lah && cd ./bin/ && pwd && ls -lah && source activate
+              
+      - name: Export flask APP
+        run: export FLASK_APP=app
+        
+     # - name: Run Flask
+        #run: nohup flask run 2>&1 &
+             
+      #- name: Check if Flask runs
+        #run: netstat -tulnp | grep :5000
+        
+      #- name: Check URL
+        #run: curl http://127.0.0.1:5000
+        
+  #ci_part: 
+    #runs-on: ubuntu-latest
+    
+    #steps:
+      #- name: 

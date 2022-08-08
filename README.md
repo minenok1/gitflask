@@ -1,2 +1,10 @@
-# gitflask
-Task in which I'll create a simple web application using python3, it's libraries and pip.
+# Gitflask
+
+
+Status of Last Deployment:<br>
+<img src="https://github.com/minenok1/gitflask/workflows/GithubActions-Flask/badge.svg?branch=main"><br>
+
+
+
+
+Copyleft by Ivan Minenok 2022.
